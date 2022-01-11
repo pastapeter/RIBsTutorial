@@ -15,7 +15,8 @@
 
 ---
 
-![스크린샷 2022-01-09 오후 8.50.41.png](Tutorial%202%20f50c48cfec5245cc84a343e7d48583b1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-01-09_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.50.41.png)
+<img width="641" alt="스크린샷_2022-01-09_오후_8 50 41" src="https://user-images.githubusercontent.com/69891604/148896196-99b2b3a4-4727-42d4-bf35-7c60c65289ad.png">
+슈번호
 
 특히 여기서 LoggedIn RIB는 Viewless RIB으로 TicTacToe RIB과 OffGame RIB을 스위치 해주는 목적을 가지고 있다. 
 
@@ -54,7 +55,8 @@ func login(withPlayerName player1Name: String?, _ player2Name: String?) {
 
 이러한 변경사항으로, LoggedOut RIB의 리스너는 로그인 버튼을 누르는 순간을 알게 될 것이다.
 
-![스크린샷 2022-01-09 오후 9.28.35.png](Tutorial%202%20f50c48cfec5245cc84a343e7d48583b1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-01-09_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.28.35.png)
+<img width="742" alt="스크린샷_2022-01-09_오후_9 28 35" src="https://user-images.githubusercontent.com/69891604/148896228-75b9a5ba-6384-4c43-b62e-d80c458db559.png">
+
 
 ## LoggedIn RIB으로 라우팅
 
