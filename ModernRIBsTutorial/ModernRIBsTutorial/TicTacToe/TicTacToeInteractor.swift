@@ -24,11 +24,7 @@ protocol TicTacToeListener: AnyObject {
 }
 
 final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, TicTacToeInteractable, TicTacToePresentableListener {
-  func closeGame() {
-    <#code#>
-  }
-  
-  
+
   weak var router: TicTacToeRouting?
   weak var listener: TicTacToeListener?
   
@@ -65,7 +61,9 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
     }
   }
   
-  
+  func closeGame() {
+    listener?.gameDidEnd()
+  }
   
   //MARK: - private
  
