@@ -67,7 +67,7 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
   
   //MARK: - private
  
-  private var currentPlayer = PlayerType.red
+  private var currentPlayer = PlayerType.player1
   private var board = [[PlayerType?]]()
 
   private func initBoard() {
@@ -78,7 +78,7 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
 
   private func getAndFlipCurrentPlayer() -> PlayerType {
       let currentPlayer = self.currentPlayer
-      self.currentPlayer = currentPlayer == .red ? .blue : .red
+      self.currentPlayer = currentPlayer == .player1 ? .player2 : .player1
       return currentPlayer
   }
 
@@ -135,11 +135,6 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
 
       return nil
   }
-}
-
-enum PlayerType: Int {
-  case red = 1
-  case blue
 }
 
 struct GameConstants {

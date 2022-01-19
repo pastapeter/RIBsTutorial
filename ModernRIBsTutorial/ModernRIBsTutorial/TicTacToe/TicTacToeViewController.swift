@@ -39,9 +39,9 @@ final class TicTacToeViewController: UIViewController, TicTacToePresentable, Tic
       let indexPathRow = row * GameConstants.colCount + col
       let color: UIColor = {
           switch playerType {
-          case .red:
+          case .player1:
               return UIColor.red
-          case .blue:
+          case .player2:
               return UIColor.blue
           }
       }()
@@ -52,9 +52,9 @@ final class TicTacToeViewController: UIViewController, TicTacToePresentable, Tic
   func announce(winner: PlayerType) {
       let winnerString: String = {
           switch winner {
-          case .red:
+          case .player1:
               return "Red"
-          case .blue:
+          case .player2:
               return "Blue"
           }
       }()

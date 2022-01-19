@@ -31,7 +31,8 @@ final class LoggedInInteractor: PresentableInteractor<LoggedInPresentable>, Logg
   
   // TODO: Add additional dependencies to constructor. Do not perform any logic
   // in constructor.
-  override init(presenter: LoggedInPresentable) {
+  init(presenter: LoggedInPresentable, mutableScoreStream: MutableScoreStream) {
+    self.mutableScoreStream = mutableScoreStream
     super.init(presenter: presenter)
     presenter.listener = self
   }
@@ -55,5 +56,9 @@ final class LoggedInInteractor: PresentableInteractor<LoggedInPresentable>, Logg
   func gameDidEnd() {
     router?.routeToOffGame()
   }
+  
+  //MARK: - Private
+  private let mutableScoreStream: MutableScoreStream
+
   
 }
