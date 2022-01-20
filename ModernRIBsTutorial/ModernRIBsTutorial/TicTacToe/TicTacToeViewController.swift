@@ -13,15 +13,16 @@ protocol TicTacToePresentableListener: AnyObject {
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
   func placeCurrentPlayerMark(atRow row: Int, col: Int)
-  func closeGame()
 }
 
 final class TicTacToeViewController: UIViewController, TicTacToePresentable, TicTacToeViewControllable {
   
   weak var listener: TicTacToePresentableListener?
   
-  init() {
-      super.init(nibName: nil, bundle: nil)
+  init(player1Name: String, player2Name: String) {
+    self.player1Name = player1Name
+    self.player2Name = player2Name
+    super.init(nibName: nil, bundle: nil)
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -49,24 +50,31 @@ final class TicTacToeViewController: UIViewController, TicTacToePresentable, Tic
       cell?.backgroundColor = color
   }
 
-  func announce(winner: PlayerType) {
+  func announce(winner: PlayerType?, withCompletionHandler handler: @escaping() -> ()) {
       let winnerString: String = {
+        if let winner = winner {
           switch winner {
           case .player1:
-              return "Red"
+              return "\(player1Name) won!"
           case .player2:
-              return "Blue"
+              return "\(player2Name) won!"
           }
+        } else {
+          return "It's a draw"
+        }
       }()
-      let alert = UIAlertController(title: "\(winnerString) Won!", message: nil, preferredStyle: .alert)
-    let closeAction = UIAlertAction(title: "Close Game", style: UIAlertAction.Style.default) { [weak self] _ in
-          self?.listener?.closeGame()
+      let alert = UIAlertController(title: "\(winnerString)", message: nil, preferredStyle: .alert)
+    let closeAction = UIAlertAction(title: "Close Game", style: UIAlertAction.Style.default) { _ in
+          handler()
       }
       alert.addAction(closeAction)
       present(alert, animated: true, completion: nil)
   }
 
   // MARK: - Private
+  private let player1Name: String
+  private let player2Name: String
+  
   private lazy var collectionView: UICollectionView = {
       let layout = UICollectionViewFlowLayout()
       layout.minimumLineSpacing = 0

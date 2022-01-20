@@ -14,12 +14,12 @@ protocol TicTacToeRouting: ViewableRouting {
 protocol TicTacToePresentable: Presentable {
   var listener: TicTacToePresentableListener? { get set }
   func setCell(atRow row: Int, col: Int, withPlayerType playerType: PlayerType)
-  func announce(winner: PlayerType)
+  func announce(winner: PlayerType?, withCompletionHandler handler: @escaping () -> ())
   // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol TicTacToeListener: AnyObject {
-  func gameDidEnd()
+  func gameDidEnd(withWinner winner: PlayerType?)
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
@@ -57,12 +57,18 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
     presenter.setCell(atRow: row, col: col, withPlayerType: currentPlayer)
     
     if let winner = checkWinner() {
-      presenter.announce(winner: winner)
+      presenter.announce(winner: winner, withCompletionHandler: {
+        self.listener?.gameDidEnd(withWinner: winner)
+      })
+    } else {
+      if !board.contains(where: { row in
+        row.contains(nil) == true
+      }) {
+        presenter.announce(winner: nil, withCompletionHandler: {
+          self.listener?.gameDidEnd(withWinner: nil)
+        })
+      }
     }
-  }
-  
-  func closeGame() {
-    listener?.gameDidEnd()
   }
   
   //MARK: - private

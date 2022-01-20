@@ -24,8 +24,6 @@ protocol LoggedInListener: AnyObject {
 
 final class LoggedInInteractor: PresentableInteractor<LoggedInPresentable>, LoggedInInteractable, LoggedInPresentableListener {
   
-
-
   weak var router: LoggedInRouting?
   weak var listener: LoggedInListener?
   
@@ -53,12 +51,14 @@ final class LoggedInInteractor: PresentableInteractor<LoggedInPresentable>, Logg
   }
   
   // 게임 끝나면 routeToOffGame
-  func gameDidEnd() {
+  func gameDidEnd(withWinner winner: PlayerType?) {
+    if let winner = winner {
+      mutableScoreStream.updateScore(withWinner: winner)
+    }
     router?.routeToOffGame()
   }
   
   //MARK: - Private
   private let mutableScoreStream: MutableScoreStream
 
-  
 }
