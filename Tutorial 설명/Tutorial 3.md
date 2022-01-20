@@ -2,7 +2,7 @@
 
 # RIBs Dependency Injection and Communication
 
-![스크린샷 2022-01-19 오후 4.12.28.png](iOS%20Tutorial%203%2095302a7bfdca452892b41d341ec9e1f1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-01-19_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.12.28.png)
+<img width="587" alt="스크린샷_2022-01-19_오후_4 12 28" src="https://user-images.githubusercontent.com/69891604/150307995-e8f04df3-73a0-4fd3-85bb-a15f1719fe40.png">
 
 튜토리얼3에서는 새로운 RIB을 만들지 않고, 현재 RIB을 수정하는 과정이 있을 것이다.
 
@@ -162,7 +162,7 @@ init(player1Name: String, player2Name: String) {
 
 결국은 OffGame RIB의 뷰컨트롤러에서 UI 업데이트를 했다. 뷰컨트롤러의 코드는 Wiki에서 코드 참고를 통해 하면 될 것 같다
 
-![simulator_screenshot_624D3F4B-7586-41A3-A386-96C21474F524.png](iOS%20Tutorial%203%2095302a7bfdca452892b41d341ec9e1f1/simulator_screenshot_624D3F4B-7586-41A3-A386-96C21474F524.png)
+![simulator_screenshot_624D3F4B-7586-41A3-A386-96C21474F524](https://user-images.githubusercontent.com/69891604/150308044-8c3594ca-7f91-4e25-aa25-f42d98ae8a16.png)
 
 ## Track scores using a ReactiveX stream
 
