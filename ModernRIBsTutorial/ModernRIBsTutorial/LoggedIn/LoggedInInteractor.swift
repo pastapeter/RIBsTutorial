@@ -6,6 +6,7 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol LoggedInRouting: ViewableRouting {
   func routeToTicTacToe()
@@ -22,7 +23,20 @@ protocol LoggedInListener: AnyObject {
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class LoggedInInteractor: PresentableInteractor<LoggedInPresentable>, LoggedInInteractable, LoggedInPresentableListener {
+final class LoggedInInteractor: PresentableInteractor<LoggedInPresentable>, LoggedInInteractable, LoggedInPresentableListener, LoggedInActionableItem {
+  
+  func launchGame(with id: String?) -> AnyPublisher<(LoggedInActionableItem, ()), Error> {
+    let game: Game? = games.first { game in
+            return game.id.lowercased() == id?.lowercased()
+        }
+
+        if let game = game {
+            router?.routeToGame(with: game.builder)
+        }
+
+    return Published<Any>.Just((self, ()))
+  }
+  
   
   weak var router: LoggedInRouting?
   weak var listener: LoggedInListener?

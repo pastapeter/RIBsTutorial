@@ -6,6 +6,9 @@
 //
 
 import ModernRIBs
+import Foundation
+import Combine
+import UIKit
 
 protocol RootRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -21,7 +24,24 @@ protocol RootListener: AnyObject {
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
+final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener, UrlHandler, RootActionableItem {
+  
+  private let loggedInActionableItemSubject = PassthroughSubject<LoggedInActionableItem, Error>()
+  
+//  private let loggedInActionableItemSubject = ReplaySubject<LoggedInActionableItem>.create(bufferSize: 1)
+  
+  func waitForLogin() -> AnyPublisher<(LoggedInActionableItem, ()), Error> {
+    return loggedInActionableItemSubject
+      .map { }
+  }
+  
+  func handle(_ url: URL) {
+    let launchGameWorkflow = LaunchGameWorkflow(url: url)
+    launchGameWorkflow
+      .subscribe(self)
+      .disposeOnDeactivate(interactor: self)
+  }
+  
   
   weak var router: RootRouting?
   weak var listener: RootListener?
