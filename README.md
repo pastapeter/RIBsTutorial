@@ -6,8 +6,8 @@
 
 ## Contents
 
-- What I Studied
-- How I Studied
+- [What I Studied](#What_I_Studied)
+- [How I Studied](#How_I_Studied)
 
 ## What I Studied
 
